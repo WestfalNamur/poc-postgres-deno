@@ -37,4 +37,6 @@ migratedown:
 # server
 #
 server-run:
-	deno run server/index.ts
+	deno fmt server/ \
+	&& deno check server/index.ts \
+	&& deno run server/index.ts

@@ -3,7 +3,9 @@ interface handlerAccountsByIdProps {
   id: string;
 }
 
-export const handlerAccountsById = async (props: handlerAccountsByIdProps): Promise<Response> => {
+export const handlerAccountsById = async (
+  props: handlerAccountsByIdProps,
+): Promise<Response> => {
   if (props.req.method === "GET") {
     return new Response(`"accounts GET" ${props.id}`, {
       status: 200,

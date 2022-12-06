@@ -1,9 +1,10 @@
 import { handlerAccountsById } from "../handlers/index.ts";
-import {dbAccountsGetAll} from "../db/index.ts";
+import { accountsGetAll } from "../db/dbAccounts.ts";
 
 export const ROUTE_ACCOUNTS = new URLPattern({ pathname: "/accounts*" });
 const ROUTE_ACCOUNTS_BY_ID = new URLPattern({ pathname: "/accounts/:id" });
 
+// TODO: Docs
 export const routerAccounts = async (req: Request): Promise<Response> => {
   const match = ROUTE_ACCOUNTS_BY_ID.exec(req.url);
   if (match) {
@@ -11,11 +12,9 @@ export const routerAccounts = async (req: Request): Promise<Response> => {
     return handlerAccountsById({ req, id });
   }
 
-  // TODO: Zod type check && return
-  const rows = await dbAccountsGetAll()
-  console.log(rows)
+  const accs = await accountsGetAll();
 
-  return new Response("", {
+  return new Response(JSON.stringify(accs), {
     status: 200,
     headers: {
       "content-type": "application/json",
