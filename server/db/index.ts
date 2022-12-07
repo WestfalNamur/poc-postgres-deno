@@ -11,9 +11,9 @@ const pool = new Pool(DATABASE_URL, 20);
 /* Query abstraction to yeild a connection from the connection pool, run the query,
  * log errors, return the result and release the connection again.
  */
-export const runQuery = async (
+export async function runQuery(
   query: string,
-): Promise<QueryObjectResult<unknown> | undefined> => {
+): Promise<QueryObjectResult<unknown> | undefined> {
   const client = await pool.connect();
   let result;
   try {
@@ -24,4 +24,4 @@ export const runQuery = async (
     client.release();
   }
   return result;
-};
+}
