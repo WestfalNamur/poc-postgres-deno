@@ -28,15 +28,22 @@ dropdb:
 	docker exec -it ${MANDS_DB_CONTAINER_NAME} dropdb --username=${MANDS_DB_CONTAINER_USER} ${MANDS_DB_NAME}
 
 migrateup:
-	migrate -path ./server/src/db/migration -database "$(MANDS_DB_URL)" -verbose up
+	migrate -path ./server/db/migration -database "$(MANDS_DB_URL)" -verbose up
 
 migratedown:
-	migrate -path ./server/src/db/migration -database "$(MANDS_DB_URL)" -verbose down
+	migrate -path ./server/db/migration -database "$(MANDS_DB_URL)" -verbose down
 
 #
 # server
 #
-server-run:
+server-qc:
 	deno fmt server/ \
 	&& deno check server/index.ts \
+	&& deno lint server/index.ts
+
+server-run:
+	make server-qc \
 	&& deno run server/index.ts
+
+run:
+	deno run server/index.ts

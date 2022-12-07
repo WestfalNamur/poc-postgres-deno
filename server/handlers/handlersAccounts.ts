@@ -1,11 +1,10 @@
-interface handlerAccountsByIdProps {
+interface HandlerAccountById {
   req: Request;
   id: string;
 }
 
-export const handlerAccountsById = async (
-  props: handlerAccountsByIdProps,
-): Promise<Response> => {
+export const handlerAccountById = (props: HandlerAccountById): Response => {
+  // TODO: Implemet
   if (props.req.method === "GET") {
     return new Response(`"accounts GET" ${props.id}`, {
       status: 200,

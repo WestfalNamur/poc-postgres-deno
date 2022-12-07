@@ -2,9 +2,9 @@ import { z } from "https://deno.land/x/zod/mod.ts";
 
 export const zAccount = z.object({
   id: z.number(),
-  userName: z.string(),
+  user_name: z.string(),
   email: z.string(),
-  pwHash: z.string(),
+  password_hash: z.string(),
   balance: z.number(),
 });
 export type Account = z.infer<typeof zAccount>;

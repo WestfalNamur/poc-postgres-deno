@@ -1,8 +1,6 @@
 import { ROUTE_ACCOUNTS, routerAccounts } from "./routerAccounts.ts";
 
-/* Application router
- *
- * Takes a requests, checks the requested url and calls the according ressource
+/* Takes a requests, checks the requested url and calls the according ressource
  * router or 404 if no ressource route matches.
  */
 export const router = async (req: Request): Promise<Response> => {
